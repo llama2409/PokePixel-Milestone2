@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PokéPixel</title>
+    <link rel="stylesheet" href="Assets/style.css">
 </head>
 <body>
-    <h1></h1>
+    <header>
+        <h1>PokéPixel</h1>
+    </header>
+
+<!--difficulty select menu-->
+
+<section id="menu">
+    <h2>Select a Pokémon</h2>
+    <button data-puzzle="easy">Easy</button>
+    <button data-puzzle="medium">Medium</button>
+    <button data-puzzle="hard">Hard</button>
+</section>
+
+<!-- game section -->
+  <main id="game" class="hidden">
+    <div id="palette">
+      <h3>Palette</h3>
+      <div id="colors"></div>
+    </div>
+
+    <div id="grid"></div>
+
+    <div id="controls">
+      <button id="reset">Reset Puzzle</button>
+    </div>
+  </main>
+
 </body>
 </html>
