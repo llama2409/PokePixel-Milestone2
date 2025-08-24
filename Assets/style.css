@@ -1,0 +1,35 @@
+/* global styles */
+body {
+  font-family: 'Press Start 2P', monospace, sans-serif; /* retro pixel font (optional) */
+  background-color: #0a1a2f; /* dark navy */
+  color: #ffdd33; /* bright yellow */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1, h2, h3 {
+  color: #ffdd33;
+  text-shadow: 2px 2px #000;
+}
+
+button {
+  background-color: #ffdd33;
+  color: #0a1a2f;
+  border: 3px solid #0a1a2f;
+  padding: 10px 16px;
+  margin: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: transform 0.1s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background-color: #ffee66;
+}
+
+.hidden {
+  display: none;
+}
