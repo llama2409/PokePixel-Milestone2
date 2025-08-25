@@ -33,3 +33,16 @@ button:hover {
 .hidden {
   display: none;
 }
+
+/* menu */
+#menu {
+  margin-top: 40px;
+}
+
+/* game */
+#game {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
