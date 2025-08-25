@@ -1,3 +1,16 @@
+// Menu & game sections
+const menu = document.getElementById("menu");
+const game = document.getElementById("game");
+const gridElement = document.getElementById("grid");
+const colorsElement = document.getElementById("colors");
+
+// Buttons
+const toggleBtn = document.getElementById("toggle-numbers");
+const resetBtn = document.getElementById("reset");
+const winMessage = document.getElementById("win-message");
+const backToMenuBtn = document.getElementById("back-to-menu");
+
+
 /* Pikachu puzzle */
 const puzzles = {
     easy: {
