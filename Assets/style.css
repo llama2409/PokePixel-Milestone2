@@ -1,8 +1,7 @@
 /* global styles */
 body {
-  font-family: 'Press Start 2P', monospace, sans-serif; /* retro pixel font (optional) */
-  background-color: #0a1a2f; /* dark navy */
-  color: #ffdd33; /* bright yellow */
+  font-family: 'Press Start 2P', monospace, sans-serif; 
+  color: #ffdd33; 
   margin: 0;
   padding: 0;
   text-align: center;
