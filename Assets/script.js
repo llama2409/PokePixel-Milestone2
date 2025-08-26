@@ -148,3 +148,25 @@ function renderPalette(palette) {
         colorsElement.appendChild(swatch);
     });
 }
+
+function renderGrid(puzzle) {
+    gridElement.innerHTML = ""; // clears previous grid
+
+    gridElement.style.display ="grid";
+    gridElement.style.gridTemplateColumns = `repeat(${puzzle.grid[0].length}, 20px)`;
+
+    puzzle.grid.forEach((row, y) => {
+        row.forEach((cell, x) => {
+            const cellDiv = document.createElement("div");
+            cellDiv.classList.add("cell")
+            cellDiv.dataset.correct = cell;
+            cellDiv.dataset.y = y;
+            cellDiv.dataset.x = x;
+
+            if (cell !== 0 && numbersVisible) {
+                cellDiv.textContent = cell; // shows number
+            }
+            gridElement.appendChild(cellDiv);
+        });
+    });
+}
