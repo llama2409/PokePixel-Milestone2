@@ -187,3 +187,12 @@ gridElement.addEventListener("click", e => {
         cell.dataset.filled = "false";
     }
 });
+
+resetBtn.addEventListener("click", () => {
+  renderGrid(puzzles[currentPuzzle]);
+});
+
+toggleBtn.addEventListener("click", () => {
+  numbersVisible = !numbersVisible;
+  renderGrid(puzzles[currentPuzzle]);
+});
