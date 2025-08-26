@@ -10,6 +10,10 @@ const resetBtn = document.getElementById("reset");
 const winMessage = document.getElementById("win-message");
 const backToMenuBtn = document.getElementById("back-to-menu");
 
+let currentPuzzle = null;
+let currentColor = null;
+let numbersVisible = true;
+
 const puzzles = {
     // Pikachu puzzle
     easy: {
@@ -112,3 +116,19 @@ const puzzles = {
         ]
     }
 };
+
+document.querySelectorAll("#menu-button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const choice = btn.dataset.puzzle;
+        currentPuzzle = choice;
+        menu.classList.add("hidden");
+        game.classList.remove("hidden");
+        loadPuzzle(puzzles[choice]);
+    });
+});
+
+function loadPuzzle(puzzle) {
+    winMessage.style.display = "none";
+    renderPalette(puzzle.palette);
+    renderGrid(puzzle);
+}
