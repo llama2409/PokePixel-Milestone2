@@ -132,3 +132,19 @@ function loadPuzzle(puzzle) {
     renderPalette(puzzle.palette);
     renderGrid(puzzle);
 }
+
+function renderPalette(palette) {
+    colorsElement.innerHTML = "";
+    Object.entries(palette).forEach(([num, color]) => {
+        const swatch = document.createElement("div");
+        swatch.className = "color-swatch";
+        swatch.style.backgroundColor = color;
+        swatch.dataset.num = num;
+        swatch.addEventListener("click", () => {
+            currentColor = num;
+            document.querySelectorAll(".swatch").forEach(s => s.classList.remove("selected"))
+            swatch.classList.add("selected");
+        });
+        colorsElement.appendChild(swatch);
+    });
+}
