@@ -29,6 +29,8 @@ button:hover {
   background-color: #ffee66;
 }
 
+/* specific styles */
+
 .hidden {
   display: none;
 }
@@ -44,4 +46,39 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#palette {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* individual swatches */
+.swatch {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.1s ease, border-color 0.2s ease;
+}
+
+/* hover effect */
+.swatch:hover {
+  transform: scale(1.1);
+  border-color: #ffdd33;
+}
+
+/* selected color */
+.swatch.selected {
+  outline: 3px solid #ffdd33;
+  outline-offset: 2px;
 }
