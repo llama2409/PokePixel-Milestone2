@@ -169,4 +169,21 @@ function renderGrid(puzzle) {
             gridElement.appendChild(cellDiv);
         });
     });
-}
+};
+
+gridElement.addEventListener("click", e => {
+    const cell = e.target;
+    if (!cell.classList.contains("cell")) return;
+    const correctNum = cell.dataset.correct;
+    if (correctNum === "0" || !currentColor) return;
+
+    cell.style.backgroundColor = puzzles[currentPuzzle].palette[currentColor];
+    cell.textContent = "";
+
+    if (currentColor === correctNum) {
+        cell.dataset.filled = "true";
+        checkWin();
+    } else {
+        cell.dataset.filled = "false";
+    }
+});
