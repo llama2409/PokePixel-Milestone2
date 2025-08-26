@@ -8,14 +8,12 @@ const colorsElement = document.getElementById("colors");
 const toggleBtn = document.getElementById("toggle-numbers");
 const resetBtn = document.getElementById("reset");
 const winMessage = document.getElementById("win-message");
-const backToMenuBtn = document.getElementById("back-to-menu");
 
 let currentPuzzle = null;
 let currentColor = null;
 let numbersVisible = true;
 
 const puzzles = {
-    // Pikachu puzzle
     easy: {
         palette: {
             1: "#ffd633",
@@ -47,9 +45,7 @@ const puzzles = {
             [0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         ]
-    }
-
-    // Espeon puzzle
+    },
     medium: {
         palette: {
             1: "#c9a6d9",
@@ -62,76 +58,26 @@ const puzzles = {
             8: "#8b1a1a",
             9: "#1e3a8a",
             10: "#ebdbf3ff"
-        }
+        },
         grid: [
-            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,4,4,1,1,1,1,1,1,1,1,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,2,2,2,4,4,4,4,4,4,4,1,1,1,3,3,0,0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,1,2,2,4,4,0,4,2,2,2,2,2,2,2,1,1,1,3,3,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,3,3,4,4,0,0,4,3,3,3,4,4,4,4,4,3,3,1,1,1,3,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,4,3,3,3,4,0,0,0,0,0,0,0,3,3,1,1,3,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,3,3,4,0,0,0,0,0,0,0,0,0,0,3,1,1,3,0,0,0,0,0],
-            [0,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,3,3,4,0,0,0,0,0,0,0,0,0,0,0,0,3,1,1,3,0,0,0,0],
-            [0,3,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,3,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,1,4,0,0,0],
-            [0,3,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,3,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,2,4,0,0],
-            [0,3,2,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,2,4,0,0],
-            [0,3,2,1,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,0,0,0,0,0,0,0,0,0,0,4,2,2,4,0],
-            [0,5,2,1,1,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,2,2,3,0,0,0,0,0,0,0,0,0,0,4,2,3,4,0],
-            [0,5,2,1,1,1,1,3,0,0,0,0,0,0,0,0,0,0,3,3,3,3,1,1,1,2,2,4,0,0,0,0,0,0,0,0,0,0,0,4,2,3,4,0],
-            [0,0,5,2,1,1,1,1,3,0,0,0,0,0,0,0,3,3,1,1,1,1,1,2,2,5,5,4,0,0,0,0,0,0,0,0,0,0,0,4,2,3,4,0],
-            [0,0,5,5,2,1,1,1,1,3,3,3,3,0,0,3,1,1,1,1,1,2,2,5,5,5,4,0,0,0,0,0,0,0,0,0,0,0,0,4,2,3,4,0],
-            [0,0,4,5,2,1,1,3,3,1,1,1,1,3,3,1,1,1,2,2,2,5,5,5,5,4,4,0,0,0,0,0,0,0,0,0,0,0,4,2,2,4,0,0],
-            [0,0,0,4,5,2,3,1,10,10,1,1,1,3,1,1,1,2,2,5,5,5,5,5,4,4,0,0,0,0,0,0,0,0,0,0,0,0,4,2,3,4,0,0],
-            [0,0,0,4,5,3,1,10,10,10,10,1,1,1,1,1,1,3,5,5,5,5,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,4,2,2,3,4,0,0],
-            [0,0,0,4,3,1,10,10,10,10,10,10,1,1,1,1,3,3,3,5,4,4,4,4,0,0,0,0,0,0,3,3,4,4,0,0,4,2,2,3,4,0,0,0],
-            [0,0,0,0,3,10,10,10,10,10,10,10,1,1,1,1,4,4,4,4,4,4,4,,0,0,0,0,3,3,1,1,1,2,4,4,2,2,3,4,0,0,0,0],
-            [0,0,0,3,1,1,8,8,1,10,1,1,1,1,1,1,1,1,4,4,4,4,0,0,0,0,2,2,1,1,1,1,1,1,1,1,4,4,4,0,0,0,0,0],
-            [0,0,0,3,1,8,6,7,8,1,1,1,1,1,1,1,1,1,1,1,4,4,4,4,4,2,1,1,1,1,1,1,1,1,1,1,1,5,4,0,0,0,0,0],
-            [0,0,0,3,1,8,7,7,8,1,1,1,1,1,1,1,1,1,1,1,1,2,4,2,2,1,1,1,1,1,1,1,1,1,1,1,1,2,4,0,0,0,0,0],
-            [0,0,0,3,1,1,8,8,1,1,1,5,5,1,1,1,2,1,1,1,1,1,1,4,2,2,2,1,1,1,1,1,1,1,1,1,1,2,4,0,0,0,0,0],
-            [0,0,0,3,1,1,1,1,1,1,5,9,9,1,1,1,4,1,4,2,2,1,1,1,4,2,2,2,1,1,1,1,1,1,1,2,1,2,2,4,0,0,0,0],
-            [0,0,0,3,1,1,1,1,1,5,6,9,9,1,1,1,4,4,1,4,2,2,2,2,2,4,2,2,1,2,1,1,1,1,2,1,2,2,2,4,0,0,0,0],
-            [0,0,0,0,3,1,1,1,1,5,9,9,1,1,1,4,3,3,4,3,4,4,4,4,4,4,2,2,2,1,2,1,1,2,2,2,2,2,2,4,0,0,0,0],
-            [0,0,0,0,3,1,1,1,1,1,1,1,1,1,4,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,0,0,0,0],
-            [0,0,0,0,0,3,1,1,1,1,1,1,1,4,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,0,0,0,0],
-            [0,0,0,0,0,0,3,3,3,3,3,4,4,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,3,1,2,2,2,2,2,2,2,2,2,2,4,2,2,2,2,2,2,3,2,2,2,2,2,2,2,4,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,3,1,1,2,2,2,2,2,2,2,2,2,4,2,2,2,2,2,2,3,2,2,2,2,2,2,2,4,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,3,1,4,2,2,2,2,2,2,2,2,4,2,2,2,3,3,4,4,3,2,2,2,2,2,2,2,4,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,4,1,4,2,2,2,2,2,2,2,2,4,3,3,3,4,4,3,3,4,3,2,2,2,2,2,2,2,4,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,4,4,3,1,1,1,2,2,2,2,4,4,4,4,4,3,3,3,3,3,4,2,2,2,2,2,2,2,4,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,4,3,1,1,1,1,2,2,2,4,0,0,0,0,4,3,3,3,3,3,4,4,2,2,2,2,2,2,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,0,3,1,1,1,1,2,2,2,4,0,0,0,0,0,0,4,4,3,3,3,4,0,4,4,4,2,2,2,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,3,1,1,1,2,2,2,4,0,0,0,0,0,0,0,0,0,0,4,3,3,3,4,0,0,0,4,2,2,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,0,0,3,1,2,2,2,4,4,2,4,0,0,0,0,0,0,0,0,0,0,4,3,3,4,0,0,0,0,4,2,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,0,4,2,2,2,2,4,2,2,2,4,0,0,0,0,0,0,0,0,0,0,4,3,3,4,0,0,0,0,4,2,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,0,4,2,2,2,4,0,4,2,2,2,4,0,0,0,0,0,0,0,0,0,4,3,3,4,0,0,0,0,4,2,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,4,2,2,2,4,0,0,4,2,2,2,4,0,0,0,0,0,0,0,0,4,2,2,3,4,0,0,0,0,4,2,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,4,2,2,2,4,0,0,4,2,2,2,4,0,0,0,0,0,0,0,4,2,2,2,3,4,0,0,0,4,2,2,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,3,1,2,4,0,0,0,4,2,2,2,4,0,0,0,0,0,0,4,2,3,2,2,4,0,0,0,0,4,1,3,2,4,0,0],
-            [0,0,0,0,0,0,0,0,0,3,1,2,4,0,0,4,1,1,2,4,0,0,0,0,0,0,0,4,2,3,2,4,0,0,0,0,4,1,3,3,4,0,0,0],
-            [0,0,0,0,0,0,0,0,0,3,1,2,4,0,0,4,2,4,2,4,0,0,0,0,0,0,0,0,4,4,4,0,0,0,0,0,4,2,3,3,4,0,0,0],
-            [0,0,0,0,0,0,0,0,0,0,3,4,0,0,0,0,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,4,0,0,0,0]
+            // ... your medium grid here ...
         ]
     }
+    // Add your "hard" puzzle here if needed
 };
 
-document.querySelectorAll("#menu-button").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const choice = btn.dataset.puzzle;
-        currentPuzzle = choice;
+// Difficulty select menu
+document.querySelectorAll("#menu button").forEach(button => {
+    button.addEventListener("click", () => {
+        const puzzleName = button.dataset.puzzle;
+        currentPuzzle = puzzleName;
+        winMessage.classList.add("hidden");
+        renderPalette(puzzles[puzzleName].palette);
+        renderGrid(puzzles[puzzleName]);
         menu.classList.add("hidden");
         game.classList.remove("hidden");
-        loadPuzzle(puzzles[choice]);
     });
 });
-
-function loadPuzzle(puzzle) {
-    winMessage.style.display = "none";
-    renderPalette(puzzle.palette);
-    renderGrid(puzzle);
-}
 
 function renderPalette(palette) {
     colorsElement.innerHTML = "";
@@ -142,7 +88,7 @@ function renderPalette(palette) {
         swatch.dataset.num = num;
         swatch.addEventListener("click", () => {
             currentColor = num;
-            document.querySelectorAll(".swatch").forEach(s => s.classList.remove("selected"))
+            document.querySelectorAll(".color-swatch").forEach(s => s.classList.remove("selected"));
             swatch.classList.add("selected");
         });
         colorsElement.appendChild(swatch);
@@ -150,26 +96,27 @@ function renderPalette(palette) {
 }
 
 function renderGrid(puzzle) {
-    gridElement.innerHTML = ""; // clears previous grid
-
-    gridElement.style.display ="grid";
+    gridElement.innerHTML = "";
+    gridElement.style.display = "grid";
     gridElement.style.gridTemplateColumns = `repeat(${puzzle.grid[0].length}, 20px)`;
 
     puzzle.grid.forEach((row, y) => {
         row.forEach((cell, x) => {
             const cellDiv = document.createElement("div");
-            cellDiv.classList.add("cell")
+            cellDiv.classList.add("cell");
             cellDiv.dataset.correct = cell;
             cellDiv.dataset.y = y;
             cellDiv.dataset.x = x;
+            cellDiv.dataset.filled = "false";
+            cellDiv.style.backgroundColor = ""; // reset color
 
             if (cell !== 0 && numbersVisible) {
-                cellDiv.textContent = cell; // shows number
+                cellDiv.textContent = cell;
             }
             gridElement.appendChild(cellDiv);
         });
     });
-};
+}
 
 gridElement.addEventListener("click", e => {
     const cell = e.target;
@@ -189,10 +136,24 @@ gridElement.addEventListener("click", e => {
 });
 
 resetBtn.addEventListener("click", () => {
-  renderGrid(puzzles[currentPuzzle]);
+    renderGrid(puzzles[currentPuzzle]);
 });
 
 toggleBtn.addEventListener("click", () => {
-  numbersVisible = !numbersVisible;
-  renderGrid(puzzles[currentPuzzle]);
+    numbersVisible = !numbersVisible;
+    renderGrid(puzzles[currentPuzzle]);
 });
+
+function checkWin() {
+    // All non-zero cells must be filled correctly
+    const cells = gridElement.querySelectorAll(".cell");
+    let allCorrect = true;
+    cells.forEach(cell => {
+        if (cell.dataset.correct !== "0" && cell.dataset.filled !== "true") {
+            allCorrect = false;
+        }
+    });
+    if (allCorrect) {
+        winMessage.classList.remove("hidden");
+    }
+}
