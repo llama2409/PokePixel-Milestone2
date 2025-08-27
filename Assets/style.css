@@ -125,6 +125,11 @@ button:hover {
   line-height: 1;
 }
 
+.cell[data-correct="0"] {
+  border: none !important;
+  background: transparent;
+}
+
 #grid {
   justify-content: center;
   padding-top: 15px;
