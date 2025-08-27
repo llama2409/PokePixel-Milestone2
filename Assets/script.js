@@ -192,7 +192,13 @@ resetBtn.addEventListener("click", () => {
 
 toggleBtn.addEventListener("click", () => {
     numbersVisible = !numbersVisible;
-    renderGrid(puzzles[currentPuzzle]);
+    document.querySelectorAll(".cell").forEach(cell => {
+        if (cell.dataset.correct !== "0" && cell.dataset.filled !== "true") {
+            cell.textContent = numbersVisible ? cell.dataset.correct : "";
+        }
+    });
+    // Add or remove the free-draw class on <body>
+    document.body.classList.toggle("free-draw", !numbersVisible);
 });
 
 function checkWin() {

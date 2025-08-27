@@ -126,7 +126,12 @@ button:hover {
 }
 
 .cell[data-correct="0"] {
-  border: none !important;
+  border: none;
+  background: transparent;
+}
+
+.free-draw .cell[data-correct="0"] {
+  border: 1px solid white !important;
   background: transparent;
 }
 
