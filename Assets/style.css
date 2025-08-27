@@ -5,7 +5,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: navy;
+  background-color: blue;
 }
 
 h1, h2, h3 {
@@ -50,13 +50,15 @@ button:hover {
 }
 
 #palette {
+  padding-bottom: 30px;
   margin: 20px 0;
   text-align: center;
 }
 
 #colors {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 8px;
   margin-top: 10px;
@@ -70,6 +72,7 @@ button:hover {
   border-radius: 4px;
   cursor: pointer;
   transition: transform 0.1s ease, border-color 0.2s ease;
+  
 }
 
 /* hover effect */
@@ -88,7 +91,7 @@ button:hover {
 .cell {
   width: 22px;
   height: 22px;
-  border: 1px solid #ffffff;
+  border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +104,9 @@ button:hover {
 }
 
 #grid {
+  padding-top: 15px;
   overflow-y: auto;
-  max-height: 95vh;
+  max-height: 75vh;
   max-width: 95vw;
+  
 }
