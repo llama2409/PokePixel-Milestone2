@@ -137,6 +137,7 @@ function renderPalette(palette) {
         swatch.className = "swatch";
         swatch.style.backgroundColor = color;
         swatch.dataset.num = num;
+        swatch.textContent = num;
         swatch.addEventListener("click", () => {
             currentColor = num;
             document.querySelectorAll(".swatch").forEach(s => s.classList.remove("selected"));

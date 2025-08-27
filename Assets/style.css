@@ -34,6 +34,7 @@ button {
   cursor: pointer;
   border-radius: 6px;
   transition: transform 0.1s ease;
+  font-family: 'Press Start 2P', monospace, sans-serif;
 }
 
 button:hover {
@@ -93,7 +94,13 @@ button:hover {
   border-radius: 4px;
   cursor: pointer;
   transition: transform 0.1s ease, border-color 0.2s ease;
-  
+  font-size: 14px;
+  font-weight: bold;
+  color: blue;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
 }
 
 /* hover effect */
