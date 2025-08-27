@@ -139,7 +139,7 @@ function renderPalette(palette) {
         swatch.dataset.num = num;
         swatch.addEventListener("click", () => {
             currentColor = num;
-            document.querySelectorAll("swatch").forEach(s => s.classList.remove("selected"));
+            document.querySelectorAll(".swatch").forEach(s => s.classList.remove("selected"));
             swatch.classList.add("selected");
         });
         colorsElement.appendChild(swatch);
