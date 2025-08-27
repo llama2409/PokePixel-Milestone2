@@ -124,6 +124,9 @@ document.querySelectorAll("#menu button").forEach(button => {
         renderGrid(puzzles[puzzleName]);
         menu.classList.add("hidden");
         game.classList.remove("hidden");
+        resetBtn.classList.remove("hidden");
+        toggleBtn.classList.remove("hidden");
+        returnBtn.classList.remove("hidden");
     });
 });
 
@@ -205,3 +208,18 @@ function checkWin() {
         winMessage.classList.remove("hidden");
     }
 }
+
+const returnBtn = document.getElementById("return");
+
+returnBtn.addEventListener("click", () => {
+    game.classList.add("hidden");
+    menu.classList.remove("hidden");
+    winMessage.classList.add("hidden");
+    resetBtn.classList.add("hidden");
+    toggleBtn.classList.add("hidden");
+    returnBtn.classList.add("hidden");
+    gridElement.innerHTML = "";
+    colorsElement.innerHTML = "";
+    currentPuzzle = null;
+    currentColor = null;
+});
