@@ -3,11 +3,11 @@ const menu = document.getElementById("menu");
 const game = document.getElementById("game");
 const gridElement = document.getElementById("grid");
 const colorsElement = document.getElementById("colors");
+const winMessage = document.getElementById("win-message");
 
 // buttons
 const toggleBtn = document.getElementById("toggle-numbers");
 const resetBtn = document.getElementById("reset");
-const winMessage = document.getElementById("win-message");
 
 let currentPuzzle = null;
 let currentColor = null;
@@ -47,6 +47,20 @@ const puzzles = {
         ]
     },
     medium: {
+        palette: {
+            1: "#",
+            2: "#",
+            3: "#",
+            4: "#",
+            5: "#",
+            6: "#",
+            7: "#",
+        },
+        grid: [
+            []
+        ]
+    },
+    hard: {
         palette: {
             1: "#c9a6d9",
             2: "#b07dc9",
@@ -111,7 +125,6 @@ const puzzles = {
             [0,0,0,0,0,0,0,0,0,0,3,4,0,0,0,0,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,4,0,0,0,0],
         ]
     }
-    
 };
 
 // Difficulty select menu
@@ -198,7 +211,6 @@ toggleBtn.addEventListener("click", () => {
             cell.textContent = numbersVisible ? cell.dataset.correct : "";
         }
     });
-    // Add or remove the free-draw class on <body>
     document.body.classList.toggle("free-draw", !numbersVisible);
 });
 
