@@ -1,50 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PokéPixel</title>
-    <link rel="stylesheet" href="Assets/style.css">
+    <link rel="stylesheet" href="Assets/style.css" />
     <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header>
-        <h1>PokéPixel</h1>
+      <h1>PokéPixel</h1>
     </header>
 
-<!--difficulty select menu-->
+    <!--difficulty select menu-->
 
-<section id="menu">
-    <h2>Select a difficulty!</h2>
-    <button data-puzzle="easy">Easy</button>
-    <button data-puzzle="medium">Medium</button>
-    <button data-puzzle="hard">Hard</button>
-</section>
-
-<a href="instructions.html" class="button-link">How to play</a>
-
-<!-- game section -->
-  <main id="game" class="hidden">
-  <div style="display: flex; gap: 24px; align-items: flex-start;">
-    <div id="colors">
-      
+    <section id="menu">
+      <h2>Select a difficulty!</h2>
+      <button data-puzzle="easy">Easy</button>
+      <button data-puzzle="medium">Medium</button>
+      <button data-puzzle="hard">Hard</button>
+    </section>
+    
+    <div style="text-align: center">
+      <a href="instructions.html" class="button-link">How to play</a>
     </div>
-    <div id="grid"></div>
-  </div>
 
-  <div id="controls">
-    <button id="reset" class="hidden">Reset Puzzle</button>
-    <button id="toggle-numbers" class="hidden">Free draw mode</button>
-    <button id="return" class="hidden">Return to Menu</button>
-  </div>
-  <div id="win-message" class="hidden">
-    <h2>Congratulations!</h2>
-  </div>
-</main>
+    <!-- game section -->
+    <main id="game" class="hidden">
+      <div style="display: flex; gap: 24px; align-items: flex-start">
+        <div id="colors"></div>
+        <div id="grid"></div>
+      </div>
 
+      <div id="controls">
+        <button id="reset" class="hidden">Reset Puzzle</button>
+        <button id="toggle-numbers" class="hidden">Free draw mode</button>
+        <button id="return" class="hidden">Return to Menu</button>
+      </div>
+      <div id="win-message" class="hidden">
+        <h2>Congratulations!</h2>
+      </div>
+    </main>
 
-
-  <script src="Assets/script.js"></script>
-</body>
+    <script src="Assets/script.js"></script>
+  </body>
 </html>
