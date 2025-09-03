@@ -53,6 +53,31 @@ button:hover {
   margin-top: 40px;
 }
 
+#instructions {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 10px 24px;
+  background: #ffdd33;
+  color: #222;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.button-link:hover {
+  background: #ffe066;
+}
+
 /* game */
 #game {
   margin: 20px auto;

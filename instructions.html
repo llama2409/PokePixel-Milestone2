@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéPixel</title>
+    <link rel="stylesheet" href="Assets/style.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>PokéPixel</h1>
+    </header>
+
+<section id="instructions">
+    <h2>How to play!</h2>
+    <h3>Welcome to PokéPixel!</h3>
+    <p>In this game, you will solve a pixel art puzzle by filling in the grid with the correct colors.</p>
+    <p>Use the color palette to select a color, then click on the grid squares to color them in.</p>
+    <p>If all the numbered squares are filled in with the correctly numbered colours, you win!</p>
+</section>
+
+<!-- game section -->
+  <main id="game" class="hidden">
+  <div style="display: flex; gap: 24px; align-items: flex-start;">
+    <div id="colors">
+      
+    </div>
+    <div id="grid"></div>
+  </div>
+
+  <div id="controls">
+    <a href="index.html" class="button-link">Return to Menu</a>
+  </div>
+  <div id="win-message" class="hidden">
+    <h2>Congratulations!</h2>
+  </div>
+</main>
+
+
+
+  <script src="Assets/script.js"></script>
+</body>
+</html>
