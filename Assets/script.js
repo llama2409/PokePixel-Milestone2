@@ -240,6 +240,7 @@ gridElement.addEventListener("click", e => {
 
 resetBtn.addEventListener("click", () => {
     renderGrid(puzzles[currentPuzzle]);
+    currentColor = null;
 });
 
 toggleBtn.addEventListener("click", () => {
