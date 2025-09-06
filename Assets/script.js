@@ -199,26 +199,41 @@ function renderPalette(palette) {
 }
 
 function renderGrid(puzzle) {
-    gridElement.innerHTML = "";
-    gridElement.style.display = "grid";
-    gridElement.style.gridTemplateColumns = `repeat(${puzzle.grid[0].length}, 20px)`;
+  gridElement.innerHTML = "";
 
-    puzzle.grid.forEach((row, y) => {
-        row.forEach((cell, x) => {
-            const cellDiv = document.createElement("div");
-            cellDiv.classList.add("cell");
-            cellDiv.dataset.correct = cell;
-            cellDiv.dataset.y = y;
-            cellDiv.dataset.x = x;
-            cellDiv.dataset.filled = "false";
-            cellDiv.style.backgroundColor = ""; // reset color
+  const cols = puzzle.grid[0].length;
+  const rows = puzzle.grid.length;
+  const maxGridWidth = Math.min(window.innerWidth * 0.9, 600);
+  const cellSize = Math.floor(maxGridWidth / cols);
 
-            if (cell !== 0 && numbersVisible) {
-                cellDiv.textContent = cell;
-            }
-            gridElement.appendChild(cellDiv);
-        });
+  gridElement.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
+  gridElement.style.gridTemplateRows = `repeat(${rows}, ${cellSize}px)`;
+
+  puzzle.grid.forEach((row, rowIndex) => {
+    row.forEach((cell, colIndex) => {
+      const cellDiv = document.createElement("div");
+      cellDiv.classList.add("cell");
+      cellDiv.dataset.correct = cell;
+
+      if (cell != 0) {
+        cellDiv.textContent = cell;
+      }
+      cellDiv.style.width = `${cellSize}px`;
+      cellDiv.style.height = `${cellSize}px`;
+      cellDiv.style.fontSize = `${Math.max(8, Math.floor(cellSize * 0.6))}px`;
+      cellDiv.style.lineHeight = `${cellSize}px`;
+
+      cellDiv.addEventListener("click", () => {
+        if (currentColor) {
+          cellDiv.style.backgroundColor = currentColor.color;
+          cellDiv.dataset.user = currentColor.colorIndex;
+          checkWin(puzzle);
+        }
+      });
+
+      gridElement.appendChild(cellDiv);
     });
+  });
 }
 
 gridElement.addEventListener("click", e => {
