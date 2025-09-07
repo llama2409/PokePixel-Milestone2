@@ -166,36 +166,38 @@ const puzzles = {
 };
 
 // Difficulty select menu
-document.querySelectorAll("#menu button").forEach(button => {
-    button.addEventListener("click", () => {
-        const puzzleName = button.dataset.puzzle;
-        currentPuzzle = puzzleName;
-        winMessage.classList.add("hidden");
-        renderPalette(puzzles[puzzleName].palette);
-        renderGrid(puzzles[puzzleName]);
-        menu.classList.add("hidden");
-        game.classList.remove("hidden");
-        resetBtn.classList.remove("hidden");
-        toggleBtn.classList.remove("hidden");
-        returnBtn.classList.remove("hidden");
-    });
+document.querySelectorAll("#menu button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const puzzleName = button.dataset.puzzle;
+    currentPuzzle = puzzleName;
+    winMessage.classList.add("hidden");
+    renderPalette(puzzles[puzzleName].palette);
+    renderGrid(puzzles[puzzleName]);
+    menu.classList.add("hidden");
+    game.classList.remove("hidden");
+    resetBtn.classList.remove("hidden");
+    toggleBtn.classList.remove("hidden");
+    returnBtn.classList.remove("hidden");
+  });
 });
 
 function renderPalette(palette) {
-    colorsElement.innerHTML = "";
-    Object.entries(palette).forEach(([num, color]) => {
-        const swatch = document.createElement("div");
-        swatch.className = "swatch";
-        swatch.style.backgroundColor = color;
-        swatch.dataset.num = num;
-        swatch.textContent = num;
-        swatch.addEventListener("click", () => {
-            currentColor = num;
-            document.querySelectorAll(".swatch").forEach(s => s.classList.remove("selected"));
-            swatch.classList.add("selected");
-        });
-        colorsElement.appendChild(swatch);
+  colorsElement.innerHTML = "";
+  Object.entries(palette).forEach(([num, color]) => {
+    const swatch = document.createElement("div");
+    swatch.className = "swatch";
+    swatch.style.backgroundColor = color;
+    swatch.dataset.num = num;
+    swatch.textContent = num;
+    swatch.addEventListener("click", () => {
+      currentColor = num;
+      document
+        .querySelectorAll(".swatch")
+        .forEach((s) => s.classList.remove("selected"));
+      swatch.classList.add("selected");
     });
+    colorsElement.appendChild(swatch);
+  });
 }
 
 function renderGrid(puzzle) {
@@ -214,7 +216,6 @@ function renderGrid(puzzle) {
       const cellDiv = document.createElement("div");
       cellDiv.classList.add("cell");
       cellDiv.dataset.correct = cell;
-
       if (cell != 0) {
         cellDiv.textContent = cell;
       }
@@ -236,63 +237,63 @@ function renderGrid(puzzle) {
   });
 }
 
-gridElement.addEventListener("click", e => {
-    const cell = e.target;
-    if (!cell.classList.contains("cell")) return;
-    const correctNum = cell.dataset.correct;
-    if (correctNum === "0" || !currentColor) return;
+gridElement.addEventListener("click", (e) => {
+  const cell = e.target;
+  if (!cell.classList.contains("cell")) return;
+  const correctNum = cell.dataset.correct;
+  if (correctNum === "0" || !currentColor) return;
 
-    cell.style.backgroundColor = puzzles[currentPuzzle].palette[currentColor];
-    cell.textContent = "";
+  cell.style.backgroundColor = puzzles[currentPuzzle].palette[currentColor];
+  cell.textContent = "";
 
-    if (currentColor === correctNum) {
-        cell.dataset.filled = "true";
-        checkWin();
-    } else {
-        cell.dataset.filled = "false";
-    }
+  if (currentColor === correctNum) {
+    cell.dataset.filled = "true";
+    checkWin();
+  } else {
+    cell.dataset.filled = "false";
+  }
 });
 
 resetBtn.addEventListener("click", () => {
-    renderGrid(puzzles[currentPuzzle]);
-    currentColor = null;
+  renderGrid(puzzles[currentPuzzle]);
+  currentColor = null;
 });
 
 toggleBtn.addEventListener("click", () => {
-    numbersVisible = !numbersVisible;
-    document.querySelectorAll(".cell").forEach(cell => {
-        if (cell.dataset.correct !== "0" && cell.dataset.filled !== "true") {
-            cell.textContent = numbersVisible ? cell.dataset.correct : "";
-        }
-    });
-    document.body.classList.toggle("free-draw", !numbersVisible);
+  numbersVisible = !numbersVisible;
+  document.querySelectorAll(".cell").forEach((cell) => {
+    if (cell.dataset.correct !== "0" && cell.dataset.filled !== "true") {
+      cell.textContent = numbersVisible ? cell.dataset.correct : "";
+    }
+  });
+  document.body.classList.toggle("free-draw", !numbersVisible);
 });
 
 function checkWin() {
-    // All non-zero cells must be filled correctly
-    const cells = gridElement.querySelectorAll(".cell");
-    let allCorrect = true;
-    cells.forEach(cell => {
-        if (cell.dataset.correct !== "0" && cell.dataset.filled !== "true") {
-            allCorrect = false;
-        }
-    });
-    if (allCorrect) {
-        winMessage.classList.remove("hidden");
+  // All non-zero cells must be filled correctly
+  const cells = gridElement.querySelectorAll(".cell");
+  let allCorrect = true;
+  cells.forEach((cell) => {
+    if (cell.dataset.correct !== "0" && cell.dataset.filled !== "true") {
+      allCorrect = false;
     }
+  });
+  if (allCorrect) {
+    winMessage.classList.remove("hidden");
+  }
 }
 
 const returnBtn = document.getElementById("return");
 
 returnBtn.addEventListener("click", () => {
-    game.classList.add("hidden");
-    menu.classList.remove("hidden");
-    winMessage.classList.add("hidden");
-    resetBtn.classList.add("hidden");
-    toggleBtn.classList.add("hidden");
-    returnBtn.classList.add("hidden");
-    gridElement.innerHTML = "";
-    colorsElement.innerHTML = "";
-    currentPuzzle = null;
-    currentColor = null;
+  game.classList.add("hidden");
+  menu.classList.remove("hidden");
+  winMessage.classList.add("hidden");
+  resetBtn.classList.add("hidden");
+  toggleBtn.classList.add("hidden");
+  returnBtn.classList.add("hidden");
+  gridElement.innerHTML = "";
+  colorsElement.innerHTML = "";
+  currentPuzzle = null;
+  currentColor = null;
 });
